@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: CourseWork_TC
+  datasource:
+    url: jdbc:mysql://localhost:3306/course_work
+    username: root
+    password: 3007
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  freemarker:
+    expose-request-attributes: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 80MB
+server:
+  port: 8080

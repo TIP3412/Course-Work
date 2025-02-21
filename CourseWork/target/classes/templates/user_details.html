@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .details-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .details-container p {
+            margin: 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn-action {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center">Личный кабинет</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="details-container">
+                <p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+                <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
+                <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                <p><strong>Department:</strong> <span th:text="${user.department}"></span></p>
+                <p><strong>Division:</strong> <span th:text="${user.division}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${user.address}"></span></p>
+                <p><strong>Date of Birth:</strong> <span th:text="${user.dateOfBirth}"></span></p>
+                <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+                <p><strong>Salary:</strong> <span th:text="${user.salary}"></span></p>
+            </div>
+            <div class="btn-container">
+                <!-- Кнопка для редактирования -->
+                <a th:href="@{/users/{id}/edit(id=${user.id})}" class="btn btn-warning btn-action">Редактировать</a>
+                <!-- Кнопка для перехода на страницу assign_salary (только для ROLE_USER) -->
+                <div th:if="${authentication != null and authentication.principal.authorities[0].authority == 'ROLE_USER'}">
+                    <a th:href="@{/users/{id}/assignSalary(id=${user.id})}" class="btn btn-primary btn-action">Календарь</a>
+                </div>
+                <!-- Кнопка для админа -->
+                <div th:if="${authentication != null and authentication.principal.authorities[0].authority == 'ROLE_ADMIN'}">
+                    <a th:href="@{/users}" class="btn btn-success btn-action">Сотрудники</a>
+                </div>
+                <div th:if="${authentication != null and authentication.principal.authorities[0].authority == 'ROLE_USER'}">
+                    <a th:href="@{/users/{id}/statistics(id=${user.id})}" class="btn btn-info btn-action">Статистика</a>
+                </div>
+                <div th:if="${authentication != null and authentication.principal.authorities[0].authority == 'ROLE_ADMIN'}">
+                    <a th:href="@{/admin/statistics}" class="btn btn-info btn-action">Статистика</a>
+                </div>
+                <!-- Кнопка "Об авторе" -->
+                <a th:href="@{/about-author}" class="btn btn-info btn-action">Об авторе</a>
+                <!-- Кнопка "Выход" -->
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger btn-action">Выход</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
