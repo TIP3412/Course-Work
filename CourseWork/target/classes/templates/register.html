@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Register</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center">Register</h2>
+            <h2 class="text-center">Регистрация</h2>
             <form th:action="@{/register}" th:object="${user}" method="post">
                 <!-- Имя -->
                 <div class="form-group">
-                    <label for="firstName">First Name</label>
+                    <label for="firstName">Имя</label>
                     <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
                 </div>
                 <!-- Фамилия -->
                 <div class="form-group">
-                    <label for="lastName">Last Name</label>
+                    <label for="lastName">Фамилия</label>
                     <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required>
                 </div>
                 <!-- Email -->
@@ -27,33 +27,33 @@
                 </div>
                 <!-- Пароль -->
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Пароль</label>
                     <input type="password" class="form-control" id="password" th:field="*{password}" required>
                 </div>
                 <!-- Отдел -->
                 <div class="form-group">
-                    <label for="department">Department</label>
+                    <label for="department">Отдел</label>
                     <input type="text" class="form-control" id="department" th:field="*{department}" required>
                 </div>
                 <!-- Подразделение -->
                 <div class="form-group">
-                    <label for="division">Division</label>
+                    <label for="division">Подразделение</label>
                     <input type="text" class="form-control" id="division" th:field="*{division}" required>
                 </div>
                 <!-- Адрес -->
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Адрес</label>
                     <input type="text" class="form-control" id="address" th:field="*{address}" required>
                 </div>
                 <!-- Дата рождения -->
                 <div class="form-group">
-                    <label for="dateOfBirth">Date of Birth</label>
+                    <label for="dateOfBirth">Дата рождения</label>
                     <input type="date" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}" required>
                 </div>
                 <!-- Кнопка регистрации -->
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
             </form>
-            <p class="text-center">Already have an account? <a href="/login">Login here</a></p>
+            <p class="text-center">Есть уже аккаунт? <a href="/login">Войти здесь</a></p>
         </div>
     </div>
 </div>
